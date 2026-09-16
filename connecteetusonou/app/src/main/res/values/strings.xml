@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">connecteetusonou</string>
+
+    <string-array name="sex">
+
+        <item>Choisissez votre Sexe</item>
+        <item>M</item>
+        <item>F</item>
+
+    </string-array>
+</resources>
