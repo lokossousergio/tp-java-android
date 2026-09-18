@@ -10,31 +10,26 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retrofitcli {
-    public  static ApiService executionretrofit(){
+
+    private static final String BASE_URL = "http://10.222.99.136/connectetusonou/";
+
+    public static ApiService executionretrofit(){
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(5 , TimeUnit.MINUTES)
-                .readTimeout(40 , TimeUnit.SECONDS)
-                .writeTimeout(25 , TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
                 .build();
 
-
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost/tpconnectetusonou/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
 
-
-
-        ApiService service =retrofit.create(ApiService.class);
-        return service;
-
-
-
-
-    };
+        return retrofit.create(ApiService.class);
+    }
 }

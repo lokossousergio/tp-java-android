@@ -7,16 +7,16 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class MainActivity extends AppCompatActivity {
-    private TextInputEditText login , password;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class MainActivity extends AppCompatActivity {
+    private TextInputEditText login, password;
     private MaterialButton btn;
     private MaterialButton btninscription;
 
@@ -26,39 +26,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         login = findViewById(R.id.login);
         password = findViewById(R.id.password);
         btn = findViewById(R.id.btnconnexion);
         btninscription = findViewById(R.id.btninscription);
 
-        btn.setOnClickListener(view ->{
-            String login_str = login.getText().toString();
-            String pass = password.getText().toString();
+        btn.setOnClickListener(view -> connexion());
 
-
-            if  (login_str.isEmpty()){
-                login.setError("veuillez entrez un login");
-                login.requestFocus();
-                return ;
-
-            }
-
-            if  (pass.isEmpty()){
-                password.setError("veuillez entrez un password");
-                password.requestFocus();
-                return;
-
-            }
-            Toast.makeText(this, "Notre premier toast", Toast.LENGTH_SHORT).show();
-        });
-
-        btninscription.setOnClickListener(view ->{
-            Intent intent = new Intent(MainActivity.this , form_inscription.class);
+        btninscription.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, form_inscription.class);
             startActivity(intent);
-            finish();
-
+            // On ne fait pas finish() ici pour pouvoir revenir en arrière
         });
+    }
 
+    private void connexion() {
+        // Correction : Utiliser des noms différents pour les variables locales
+        // et utiliser getText().toString()
+        String logText = login.getText().toString().trim();
+        String passText = password.getText().toString().trim() ;
 
+        if (logText.isEmpty() || passText.isEmpty()) {
+            Toast.makeText(this, "Veuillez remplir les champs", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Retrofitcli.executionretrofit().connexion(logText, passText).enqueue(new Callback<Modconnexion>() {
+            @Override
+            public void onResponse(Call<Modconnexion> call, Response<Modconnexion> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, Page_principale.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(MainActivity.this, "Échec identifiant incorrect: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Modconnexion> call, Throwable t) {
+                // Correction : Utiliser MainActivity.this au lieu de Modconnexion.this
+                Toast.makeText(MainActivity.this, "Erreur réseau : " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
