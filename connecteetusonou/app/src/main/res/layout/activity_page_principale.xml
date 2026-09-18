@@ -10,21 +10,136 @@
 
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
+       android:layout_height="wrap_content"
        android:orientation="vertical"
-       android:gravity="center">
-
+       android:padding="32dp"
+       android:gravity="center_horizontal"
+    >
 
 
        <TextView
+           android:id="@+id/tvTitre"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="60dp"
+           android:text="Ajouter un produit"
+           android:textColor="#222222"
+           android:textSize="25sp"
+           android:textStyle="bold"></TextView>
+
+
+
+
+
+
+       <com.google.android.material.textfield.TextInputLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Bienvenue "
-           android:textSize="22sp"
-           android:textAppearance="@color/black"
-           android:gravity="center">
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:hint="Nom"
+           app:boxCornerRadiusBottomEnd="25dp"
+           app:boxCornerRadiusBottomStart="25dp"
+           app:boxCornerRadiusTopEnd="25dp"
+           app:boxCornerRadiusTopStart="25dp"
+           >
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/Nom"
+               android:hint="Nom"
 
-       </TextView>
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="20dp"
+
+               ></com.google.android.material.textfield.TextInputEditText>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:hint="ref"
+           app:boxCornerRadiusBottomEnd="25dp"
+           app:boxCornerRadiusBottomStart="25dp"
+           app:boxCornerRadiusTopEnd="25dp"
+           app:boxCornerRadiusTopStart="25dp"
+           >
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/ref"
+               android:layout_width="match_parent"
+               android:hint="ref"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="20dp"></com.google.android.material.textfield.TextInputEditText>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:hint="Prix"
+           app:boxCornerRadiusBottomEnd="25dp"
+           app:boxCornerRadiusBottomStart="25dp"
+           app:boxCornerRadiusTopEnd="25dp"
+           app:boxCornerRadiusTopStart="25dp"
+           >
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/prix"
+               android:layout_width="match_parent"
+               android:hint="Prix"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="20dp"></com.google.android.material.textfield.TextInputEditText>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           android:hint="Quantite"
+           app:boxCornerRadiusBottomEnd="25dp"
+           app:boxCornerRadiusBottomStart="25dp"
+           app:boxCornerRadiusTopEnd="25dp"
+           app:boxCornerRadiusTopStart="25dp"
+           >
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/qte"
+               android:layout_width="match_parent"
+               android:hint="Quantite"
+               android:layout_height="wrap_content"
+               android:layout_marginBottom="20dp"></com.google.android.material.textfield.TextInputEditText>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/btnaddproducts"
+           android:layout_width="match_parent"
+           android:layout_height="58dp"
+           android:layout_marginTop="30dp"
+           android:text="Ajouter"
+           app:cornerRadius="29dp">
+
+       </com.google.android.material.button.MaterialButton>
+
+
+
 
    </LinearLayout>
 </ScrollView>

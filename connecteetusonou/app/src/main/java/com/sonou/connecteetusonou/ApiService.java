@@ -23,4 +23,13 @@ public interface ApiService {
             @Field("login") String login,
             @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("addproduit.php")
+    Call<Modaddproduits> addproduits(
+            @Field("nom") String nom,
+            @Field("ref") String ref,
+            @Field("prix")  String prix,
+            @Field("qte")  String qte
+    );
 }

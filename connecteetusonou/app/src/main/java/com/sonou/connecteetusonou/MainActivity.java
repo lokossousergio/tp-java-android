@@ -2,6 +2,7 @@ package com.sonou.connecteetusonou;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -57,7 +58,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Modconnexion> call, Response<Modconnexion> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, Page_principale.class);
+                    SharedPreferences.Editor editor= getSharedPreferences("session" ,MODE_PRIVATE).edit();
+                    editor.putString("login" , logText);
+                    editor.apply();
+                    Intent intent = new Intent(MainActivity.this , produits.class);
                     startActivity(intent);
                     finish();
                 } else {
